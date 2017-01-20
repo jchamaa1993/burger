@@ -1,0 +1,27 @@
+body {
+	text-align: center;
+	align-content: center;
+	background-color: orange;
+}
+
+img {
+	width: 150px;
+}
+
+ul {
+	list-style: none;
+	float: left;
+	width: 30%;
+}
+
+p {
+	background-color: white;
+}
+
+#addBurger {
+
+}
+
+.devour {
+	float: left;
+}
