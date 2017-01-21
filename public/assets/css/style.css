@@ -10,8 +10,8 @@ img {
 
 ul {
 	list-style: none;
-	float: left;
-	width: 30%;
+	
+	width: 70%;
 }
 
 p {
@@ -19,9 +19,25 @@ p {
 }
 
 #addBurger {
+	
+}
 
+.dev {
+	background-color: orange;
+	color: red;
 }
 
 .devour {
-	float: left;
+
+}
+
+.create-update-form {
+	display: block;
+	clear: all;
+	width: 100%;
+}
+
+#burg {
+	width: 70%;
+	height: 200px;
 }

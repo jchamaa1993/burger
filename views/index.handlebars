@@ -3,14 +3,18 @@
 
 <ul>
 
-	{{#each burger}}
+	{{#each burgers}}
 		<li>
 			<p>
 				{{this.id}}. {{this.burger_name}}
-				<form action ="update/{{this.id}}?_method=PUT" method="PUT">
-					<input type ="hidden" name ="devoured" value=false>
-					<button type = "submit" id={{this.id}} class="devour">Devour it!</button>
-				</form>
+				{{#unless this.devoured}}
+					<form action ="update/{{this.id}}?_method=PUT" method="POST">
+						<button type = "submit" id={{this.id}} class="devour">Devour it!</button>
+					</form>
+				{{/unless}}
+				{{#if this.devoured}}
+					<p class="dev">above has been devoured.</p>
+				{{/if}}
 			</p>
 		</li>
 	{{/each}}

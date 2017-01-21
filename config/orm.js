@@ -1,5 +1,5 @@
 //Import MySQL connection.
-var connection = require('./connection');
+var connection = require('../config/connection');
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
@@ -38,7 +38,7 @@ var orm = {
 	insertOne: function(table, cols, vals, cb) {
 		var queryString = "INSERT INTO " + table;
 		queryString += " (";
-		queryString += col.toString();
+		queryString += cols.toString();
 		queryString += ") ";
 		queryString += "VALUES (";
 		queryString += printQuestionMarks(vals.length);
@@ -52,13 +52,12 @@ var orm = {
 			cb(result);
 		});
 	},
-	updateOne: function(table, colToChange, colIndex, valOfIndex, cb) {
+	updateOne: function(table, colToChange, condition, cb) {
 		var queryString = "UPDATE ";
-		queryString += table + "SET ";
-		queryString += colToChange;
-		queryString += "= TRUE WHERE ";
-		queryString += colIndex + " = ";
-		queryString += valOfIndex;
+		queryString += table + " SET ";
+		queryString += objToSql(colToChange);
+		queryString += " WHERE ";
+		queryString += condition;
 
 		console.log(queryString);
 

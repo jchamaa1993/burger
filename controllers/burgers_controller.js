@@ -1,44 +1,44 @@
 var express = require("express");
 
 var router = express.Router();
-
-var burgers = require("../models/burgers.js");
+// require the model
+var burgers = require("./../models/burger.js");
 
 //Create routes.
 router.get("/", function(req, res) {
 	res.redirect("/index");
-};
+});
 
 router.get("/index", function(req, res) {
 	burgers.selectAll(function(data) {
 		var hbsObject = {
 			burgers: data
 		};
-		console.log(hbsObject);
+		// console.log(hbsObject);
 		res.render("index", hbsObject);
 	});
-};
+});
 
-// router.post("/insertOne", function(req, res) {
-// 	burgers.insertOne([
-// 		"burger_name", "devoured"
-// 		], [
-// 		req.body.burgers_name, req.body.devoured
-// 		], function() {
-// 			res.redirect("/burgers");
-// 	});
-// });
+router.post("/create", function(req, res) {
+	burgers.insertOne([
+		"burger_name"], [
+		req.body.name], function() {
+			res.redirect("/index");
+	});
+});
 
 router.put("/update/:id", function(req, res) {
-	var condition = "id = " + req.pararams.id;
+	// console.log(req.params);
+	var condition = "id = " + req.params.id;
 	// throw burgers.delete the id to know which burger to update.
 	console.log("condition", condition);
-	bugers.update({
+	burgers.updateOne({
 		devoured: true
 	}, condition, function() {
-		res.redirect('/burgers');
+		res.redirect('/index');
 	});
 });
 
 // export to server.js
 module.exports = router;
+
